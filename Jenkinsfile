@@ -1,11 +1,11 @@
 pipeline {
     agent {
-       node  {
-            label 'docker-agent'  
-            }
-      }
-    triggers{
-      pollSCM '* * * * *'
+        node {
+            label 'docker-agent'
+        }
+    }
+    triggers {
+        pollSCM '* * * * *'
     }
     stages {
         stage('Build') {
@@ -15,18 +15,20 @@ pipeline {
                 sh 'java Hello'
             }
         }
-
         stage('Test') {
             steps {
                 echo 'Running tests...'
                 sh '''
+                    echo "Running unit tests..."
+                '''
             }
         }
-
         stage('Deploy') {
             steps {
                 echo 'Deploying the application...'
                 sh '''
+                    echo "Deploying to production..."
+                '''
             }
         }
     }
